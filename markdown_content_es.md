@@ -16,7 +16,7 @@ Hemos reservado habitaciones para los invitados que viajan desde el extranjero. 
 
 Maciejówka es un **retiro rural** rodeado de bosque, que ofrece un ambiente acogedor y relajado en lugar de una experiencia de hotel de lujo. Puedes esperar un **entorno encantador y rústico**, con cabañas de madera, espacios abiertos y mucha naturaleza.
 
-![[maceijowka_aereal.png]]
+[Imagen: Vista aérea de Maciejówka]
 
 El lugar tiene una **atmósfera campestre y relajada**, donde el foco está en la buena compañía, la música y la celebración en lugar de la elegancia formal. Los tacones altos pueden no ser la mejor opción para caminar sobre césped o grava, por lo que **recomendamos calzado cómodo**.
 
@@ -68,7 +68,7 @@ Ya sea que quieras explorar el **casco antiguo, disfrutar de los parques o proba
 - 🎶 **La fiesta oficial dura hasta las 4 AM, pero la noche no tiene por qué terminar ahí.** Como la mayoría nos quedamos en el lugar—**en medio de la nada sin nada alrededor**—después de que termine el DJ, podemos seguir celebrando con charlas y copas hasta el amanecer.
 - El **domingo** tendremos una celebración postboda que probablemente incluirá algún tipo de barbacoa.
 
-![[maceijowka_map.png]]
+[Imagen: Mapa de la ubicación de Maciejówka]
 
 # 🇵🇱 Información Turística Útil Sobre Polonia
 

@@ -1,0 +1,2 @@
+This is a placeholder for the maceijowka_aereal.png image.
+You'll need to manually upload the actual image to Hugging Face Spaces after deployment.

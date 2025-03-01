@@ -16,7 +16,7 @@ We’ve reserved rooms for guests traveling from abroad. The **Saturday-Sunday n
 
   Maciejówka is a **rural retreat** surrounded by forest, offering a cozy and relaxed atmosphere rather than a luxury hotel experience. Expect a **charming, rustic setting** with wooden cabins, open spaces, and plenty of nature.
 
-![[maceijowka_aereal.png]]
+[Image: Aerial view of Maciejówka venue]
 
 
 
@@ -65,7 +65,7 @@ Whether you want to explore the **Old Town, enjoy the parks, or try Polish food*
 - 🍾 **Polish weddings are a feast, not just a dinner!** Instead of a single meal, food is served in **multiple rounds throughout the night**, with dancing in between. After midnight, it’s tradition to serve a **hearty soup** to keep the energy up!
 -  🎶 **The official party lasts until 4 AM, but the night doesn’t have to end there!** Since most of us are staying at the venue—**in the middle of nowhere with nothing around**—even after the DJ wraps up, we can keep the celebration going with late-night conversations and drinks.
 - On **Sunday**  after 11:00 am we will have a post wedding celebration that will probably include some kind of barbecue type of food (details to be confirmed)
-![[maceijowka_map.png]]
+[Image: Map of Maciejówka location]
 # 🇵🇱 Useful Tourist Information About Poland
 
 - 💳 **Cash or Card?** Almost everywhere in Poland accepts **card payments**, regardless of the amount—so you won’t need much cash.

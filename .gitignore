@@ -43,5 +43,12 @@ site/
 
 # OS
 .DS_Store
-Thumbs.dbapp/static/images/maceijowka_aereal.png
+Thumbs.db
+
+# Binary files
+*.png
+*.jpg
+*.jpeg
+*.gif
+app/static/images/maceijowka_aereal.png
 app/static/images/maceijowka_map.png

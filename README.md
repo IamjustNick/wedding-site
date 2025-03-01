@@ -1,4 +1,14 @@
 # Wedding Website
+---
+title: Wedding Site
+emoji: 💍
+colorFrom: green
+colorTo: teal
+sdk: fastapi
+sdk_version: 0.115.10
+app_file: app.py
+pinned: false
+---
 
 A simple wedding website built with FastAPI that displays wedding information in both English and Spanish, with password protection.
 

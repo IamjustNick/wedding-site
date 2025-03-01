@@ -26,7 +26,12 @@ def load_markdown_content(language: str = "en") -> str:
         md_content, extras=["tables", "fenced-code-blocks", "break-on-newline"]
     )
 
-    # Replace image references with static paths
+    # Handle image placeholders (English and Spanish)
+    html_content = html_content.replace("[Image:", '<div class="image-placeholder">[Image:')
+    html_content = html_content.replace("[Imagen:", '<div class="image-placeholder">[Imagen:')
+    html_content = html_content.replace("]", ']</div>')
+    
+    # For actual images when they're available
     html_content = html_content.replace("![[", '<img src="/static/images/')
     html_content = html_content.replace("]]", '">')
 
