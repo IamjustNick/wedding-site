@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}{{ app_name }} - Home{% endblock %}
+
+{% block content %}
+    <div class="wedding-content">
+        {{ content|safe }}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Add any custom JS here if needed
+    document.addEventListener('DOMContentLoaded', function() {
+        // Make all external links open in a new tab
+        const links = document.querySelectorAll('a[href^="http"]');
+        links.forEach(link => {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+        });
+    });
+</script>
+{% endblock %}
