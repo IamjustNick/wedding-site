@@ -21,8 +21,12 @@ load_dotenv()
 OUTPUT_DIR = Path("./site")
 STATIC_DIR = Path("./app/static")
 TEMPLATES_DIR = Path("./app/templates")
+# Use different env var names to avoid conflicts with system USERNAME
 USERNAME = os.getenv("USERNAME", "wedding")
 PASSWORD = os.getenv("PASSWORD", "guest")
+# For GitHub Pages, we need to know the repository name
+REPO_NAME = "wedding-site"
+BASE_URL = f"/{REPO_NAME}"
 
 # Create output directory structure
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -57,7 +61,7 @@ def load_markdown_content(language="en"):
     )
 
     # Fix image paths
-    html_content = html_content.replace("![[", '<img src="/wedding-site/static/images/')
+    html_content = html_content.replace("![[", f'<img src="{BASE_URL}/static/images/')
     html_content = html_content.replace("]]", '">')
 
     return html_content
@@ -75,9 +79,13 @@ print("Generating login page...")
 login_template = env.get_template("login.html")
 login_html = login_template.render(current_year=datetime.now().year)
 # Fix paths for GitHub Pages
-login_html = login_html.replace('href="static/', 'href="/wedding-site/static/')
+login_html = login_html.replace('href="static/', f'href="{BASE_URL}/static/')
 with open(OUTPUT_DIR / "index.html", "w", encoding="utf-8") as f:
     f.write(login_html)
+
+# Create a simple README in the site root that forwards to index.html
+with open(OUTPUT_DIR / "README.md", "w", encoding="utf-8") as f:
+    f.write(f"# Wedding Site\n\nPlease visit the [wedding site]({BASE_URL}/index.html) to view the content.")
 
 # Generate home pages (EN and ES)
 print("Generating home pages...")
@@ -90,11 +98,11 @@ en_html = home_template.render(
     lang="en",
     app_name="Wedding Site",
     current_year=datetime.now().year,
-    url_for=lambda name, **kwargs: f"/wedding-site/{name}"
+    url_for=lambda name, **kwargs: f"{BASE_URL}/{name}"
     + (f"/{kwargs.get('lang', '')}" if "lang" in kwargs else ""),
 )
 # Fix paths for GitHub Pages
-en_html = en_html.replace('href="static/', 'href="/wedding-site/static/')
+en_html = en_html.replace('href="static/', f'href="{BASE_URL}/static/')
 with open(OUTPUT_DIR / "home" / "index.html", "w", encoding="utf-8") as f:
     f.write(en_html)
 
@@ -105,11 +113,11 @@ es_html = home_template.render(
     lang="es",
     app_name="Wedding Site",
     current_year=datetime.now().year,
-    url_for=lambda name, **kwargs: f"/wedding-site/{name}"
+    url_for=lambda name, **kwargs: f"{BASE_URL}/{name}"
     + (f"/{kwargs.get('lang', '')}" if "lang" in kwargs else ""),
 )
 # Fix paths for GitHub Pages
-es_html = es_html.replace('href="static/', 'href="/wedding-site/static/')
+es_html = es_html.replace('href="static/', f'href="{BASE_URL}/static/')
 with open(OUTPUT_DIR / "home" / "es.html", "w", encoding="utf-8") as f:
     f.write(es_html)
 
@@ -129,9 +137,8 @@ document.addEventListener('DOMContentLoaded', function() {{
             if (username === '{USERNAME}' && password === '{PASSWORD}') {{
                 // Set session storage to remember logged in status
                 sessionStorage.setItem('authenticated', 'true');
-                // Get the base URL (handle both root domain and GitHub Pages subdirectory)
-                const baseUrl = window.location.pathname.includes('/wedding-site') ? '/wedding-site' : '';
-                window.location.href = baseUrl + '/home/';
+                // Hard-code the repository-specific base URL
+                window.location.href = '/wedding-site/home/';
             }} else {{
                 document.querySelector('.error-message').textContent = 'Invalid username or password';
                 document.querySelector('.error-message').style.display = 'block';
@@ -142,9 +149,8 @@ document.addEventListener('DOMContentLoaded', function() {{
     // Check if user is authenticated for protected pages
     const isHomePage = window.location.pathname.includes('/home');
     if (isHomePage && sessionStorage.getItem('authenticated') !== 'true') {{
-        // Get the base URL (handle both root domain and GitHub Pages subdirectory)
-        const baseUrl = window.location.pathname.includes('/wedding-site') ? '/wedding-site' : '';
-        window.location.href = baseUrl + '/';
+        // Hard-code the repository-specific base URL
+        window.location.href = '/wedding-site/';
     }}
     
     // Add logout functionality
@@ -155,9 +161,8 @@ document.addEventListener('DOMContentLoaded', function() {{
     logoutLink.addEventListener('click', function(e) {{
         e.preventDefault();
         sessionStorage.removeItem('authenticated');
-        // Get the base URL (handle both root domain and GitHub Pages subdirectory)
-        const baseUrl = window.location.pathname.includes('/wedding-site') ? '/wedding-site' : '';
-        window.location.href = baseUrl + '/';
+        // Hard-code the repository-specific base URL
+        window.location.href = '/wedding-site/';
     }});
     
     if (isHomePage) {{
@@ -174,7 +179,7 @@ with open(OUTPUT_DIR / "index.html", "r", encoding="utf-8") as f:
     login_html = f.read()
 
 login_html = login_html.replace(
-    "</body>", '<script src="/wedding-site/static/auth.js"></script>\n</body>'
+    "</body>", f'<script src="{BASE_URL}/static/auth.js"></script>\n</body>'
 )
 
 with open(OUTPUT_DIR / "index.html", "w", encoding="utf-8") as f:
@@ -185,7 +190,7 @@ for html_file in [OUTPUT_DIR / "home" / "index.html", OUTPUT_DIR / "home" / "es.
         page_html = f.read()
 
     page_html = page_html.replace(
-        "</body>", '<script src="/wedding-site/static/auth.js"></script>\n</body>'
+        "</body>", f'<script src="{BASE_URL}/static/auth.js"></script>\n</body>'
     )
 
     with open(html_file, "w", encoding="utf-8") as f:
