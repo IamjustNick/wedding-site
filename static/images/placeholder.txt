@@ -1,0 +1,5 @@
+Images for the wedding site:
+- maceijowka_aereal.png - Aerial view of the Maciejówka venue
+- maceijowka_map.png - Map showing the location of the venue
+
+These are referenced in the markdown content.
