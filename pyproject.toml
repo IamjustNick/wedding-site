@@ -2,7 +2,7 @@
 name = "wedding-site"
 version = "0.1.0"
 description = "Wedding website with authentication"
-"IamjustNick <nicolasmgeijo@gmail.com>",
+authors = ["IamjustNick <nicolasmgeijo@gmail.com>"]
 readme = "README.md"
 packages = [{include = "app"}]
 package-mode = false
