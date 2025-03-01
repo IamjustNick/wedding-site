@@ -43,4 +43,5 @@ site/
 
 # OS
 .DS_Store
-Thumbs.db
+Thumbs.dbapp/static/images/maceijowka_aereal.png
+app/static/images/maceijowka_map.png
