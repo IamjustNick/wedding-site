@@ -1,23 +1,33 @@
 
 // Simple password protection for static site
 document.addEventListener('DOMContentLoaded', function() {
-    const loginForm = document.querySelector('form');
-    if (loginForm) {
-        loginForm.addEventListener('submit', function(e) {
+    console.log('Auth script loaded!');
+    
+    // Login page handling
+    if (document.getElementById('login-form')) {
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            console.log('Form submitted');
             e.preventDefault();
             
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             
+            console.log('Checking credentials...');
+            
             if (username === '' && password === '') {
-                // Set session storage to remember logged in status
+                console.log('Login successful');
                 sessionStorage.setItem('authenticated', 'true');
-                // Hard-code the repository-specific base URL
                 window.location.href = '/wedding-site/home/';
             } else {
-                document.querySelector('.error-message').textContent = 'Invalid username or password';
-                document.querySelector('.error-message').style.display = 'block';
+                console.log('Login failed');
+                document.getElementById('error-message').style.display = 'block';
             }
+        });
+
+        // Also handle button click
+        document.getElementById('login-button').addEventListener('click', function() {
+            console.log('Login button clicked');
+            document.getElementById('login-form').dispatchEvent(new Event('submit'));
         });
     }
     
