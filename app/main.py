@@ -1,11 +1,11 @@
 from datetime import datetime, timedelta
 from typing import Optional
 
-from fastapi import FastAPI, Depends, HTTPException, status, Request, Form
+from fastapi import FastAPI, HTTPException, status, Request, Form
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from fastapi.security import OAuth2PasswordRequestForm
+from fastapi.middleware.cors import CORSMiddleware
 
 from starlette.middleware.sessions import SessionMiddleware
 
@@ -13,20 +13,25 @@ from app.config import settings
 from app.auth import authenticate_user, create_access_token, get_current_user
 from app.markdown_helper import load_markdown_content
 
-# Initialize FastAPI app
+
 app = FastAPI(title=settings.APP_NAME)
 
-# Add session middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 app.add_middleware(
     SessionMiddleware,
     secret_key=settings.SECRET_KEY,
-    max_age=3600,  # 1 hour
+    max_age=3600, #1 hour
 )
 
-# Mount static directory
 app.mount("/static", StaticFiles(directory=str(settings.STATIC_DIR)), name="static")
 
-# Templates
 templates = Jinja2Templates(directory=str(settings.TEMPLATES_DIR))
 
 

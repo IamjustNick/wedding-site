@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{{ app_name }}{% endblock %}</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@400;600&display=swap">
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css">
     {% block extra_head %}{% endblock %}
 </head>
 <body>
     <div class="language-switcher">
-        <a href="{{ url_for('home', lang='en') }}" {% if lang == 'en' %}class="active"{% endif %}>English</a>
-        <a href="{{ url_for('home', lang='es') }}" {% if lang == 'es' %}class="active"{% endif %}>Español</a>
+        <a href="/home/en" {% if lang == 'en' %}class="active"{% endif %}>English</a>
+        <a href="/home/es" {% if lang == 'es' %}class="active"{% endif %}>Español</a>
     </div>
     
     <div class="container">

@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Site - Login</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@400;600&display=swap">
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/login-handler.js"></script>
     <style>
         /* Inline styles for login form to ensure they work on GitHub Pages */
         .login-form {
@@ -61,11 +62,17 @@
     <div class="login-form">
         <h2>Welcome to Our Wedding Site</h2>
         
+        {% if error %}
+        <div class="error-message" style="display: block;">
+            {{ error }}
+        </div>
+        {% else %}
         <div class="error-message" id="error-message">
             Invalid username or password
         </div>
+        {% endif %}
         
-        <form id="login-form" onsubmit="return false;">
+        <form id="login-form" method="post" action="/login">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" required>
@@ -84,26 +91,18 @@
         &copy; {{ current_year }} Wedding Site
     </footer>
 
+    <!-- Client-side validation script - only used in development -->
     <script>
-        // Inline script to handle login (will be replaced by the external script in the deployment)
+        // Validate form before submission
         document.getElementById('login-form').addEventListener('submit', function(e) {
-            e.preventDefault();
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             
-            // Default values (will be replaced in the build process)
-            if (username === 'wedding' && password === 'guest') {
-                sessionStorage.setItem('authenticated', 'true');
-                window.location.href = '/home/';
-            } else {
+            if (!username || !password) {
+                e.preventDefault();
                 document.getElementById('error-message').style.display = 'block';
+                return false;
             }
-        });
-
-        // Also trigger on button click for more reliability
-        document.getElementById('login-button').addEventListener('click', function() {
-            const form = document.getElementById('login-form');
-            form.dispatchEvent(new Event('submit'));
         });
     </script>
 </body>

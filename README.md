@@ -1,8 +1,6 @@
 # Wedding Website
 
-A simple wedding website built with FastAPI and protected with password authentication.
-
-This is a dead simple project I am using to test Claude's new coding  assistant features.
+A simple wedding website built with FastAPI that displays wedding information in both English and Spanish, with password protection.
 
 ## Features
 
@@ -73,49 +71,37 @@ The application uses environment variables for configuration:
    - Navigate to Settings → Secrets → Actions
    - Add each variable as a new secret
 
-## Deploying to GitHub Pages
+## Deploying to Hugging Face Spaces
 
-### Automatic Deployment (Recommended)
+1. Create a Hugging Face account if you don't have one: https://huggingface.co/join
 
-1. Create a GitHub repository for your website
+2. Create a new Space:
+   - Go to https://huggingface.co/spaces
+   - Click "Create new Space"
+   - Choose a name for your space (e.g., "wedding-site")
+   - Select "FastAPI" as the SDK
+   - Choose "Public" or "Private" visibility (Private is recommended for wedding sites)
 
-2. Add the following secrets in your GitHub repository (Settings → Secrets → Actions):
-   - `SECRET_KEY`: A secure random string
-   - `ALGORITHM`: HS256
-   - `ACCESS_TOKEN_EXPIRE_MINUTES`: 10080 (1 week)
-   - `USERNAME`: Your chosen username
-   - `PASSWORD`: Your secure password
-   - `APP_NAME`: "Wedding Site" (or your custom name)
-
-3. Push your code to the `main` branch
-
-4. GitHub Actions will automatically build and deploy your site to the `gh-pages` branch
-
-5. Configure GitHub Pages to serve from the `gh-pages` branch in your repository settings
-
-### Manual Deployment
-
-If you prefer to deploy manually:
-
-1. Create a GitHub repository for your website
-
-2. Generate the static site locally:
+3. Clone your repository to Hugging Face:
    ```bash
-   python deploy_to_github.py
+   git clone https://github.com/YOUR_USERNAME/wedding-site.git
+   cd wedding-site
+   git remote add space https://huggingface.co/spaces/YOUR_HF_USERNAME/wedding-site
+   git push space main
    ```
 
-3. Push the generated files to GitHub:
-   ```bash
-   cd site
-   git init
-   git add .
-   git commit -m "Deploy wedding site to GitHub Pages"
-   git branch -M gh-pages
-   git remote add origin https://github.com/YOUR_USERNAME/wedding-site.git
-   git push -u origin gh-pages -f
-   ```
+4. Set up environment variables in Hugging Face Space:
+   - Go to your Space settings
+   - Add the following environment variables:
+     - `SECRET_KEY`: A secure random string
+     - `ALGORITHM`: HS256
+     - `ACCESS_TOKEN_EXPIRE_MINUTES`: 10080
+     - `USERNAME`: Your chosen username
+     - `PASSWORD`: Your secure password
+     - `APP_NAME`: "Wedding Site"
 
-4. Configure GitHub Pages to serve from the `gh-pages` branch
+5. Your site will automatically build and be available at:
+   https://huggingface.co/spaces/YOUR_HF_USERNAME/wedding-site
 
 ## License
 

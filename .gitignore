@@ -32,6 +32,9 @@ ENV/
 # Generated site
 site/
 
+# Hugging Face Spaces specific
+.DS_Store
+
 # IDE
 .idea/
 .vscode/
